@@ -2,8 +2,9 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 
 const app = express();
+app.use(express.static('public'));
 app.use(cors<Request>());
-app.use(express.json())
+app.use(express.json());
 
 const port = 4500;
 let nextId = 4;
@@ -112,7 +113,7 @@ app.delete('/api/todos', (req: Request, res: Response) => {
 });
 
 //Todo 수정
-app.put('/api/todos/:id', (req: Request, res: Response) => {
+app.patch('/api/todos/:id', (req: Request, res: Response) => {
   let id = Number(req.params.id);
   const todoIndex = todos.findIndex(f => f.id == id);
 
