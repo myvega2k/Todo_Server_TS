@@ -90,7 +90,7 @@ app.delete('/api/todos/:id', (request: Request, response: Response) => {
 
   if (isNaN(id)) {
     // 오류: 잘못된 경로
-    response.send({
+    response.status(400).send({
       error: '숫자를 입력하세요!'
     });
   } else if (todos[todoIndex]) {
@@ -99,7 +99,7 @@ app.delete('/api/todos/:id', (request: Request, response: Response) => {
     response.send(todos);
   } else {
     // 오류: 요소가 없을 경우
-    response.send({
+    response.status(404).send({
       error: '존재하지 않는 데이터입니다!'
     });
   }
